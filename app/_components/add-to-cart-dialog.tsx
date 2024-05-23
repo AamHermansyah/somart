@@ -53,7 +53,7 @@ function AddToCartDialog({ open, setOpen }: PropTypes) {
               <BiSolidShoppingBag />
               Add To Cart
             </Button>
-            <span className="text-sm text-center"><b>Kategori:</b> Kebutuhan Rumah Tangga</span>
+            <span className="text-sm text-center md:text-left"><b>Kategori:</b> Kebutuhan Rumah Tangga</span>
           </div>
         </div>
       </DialogContent>
