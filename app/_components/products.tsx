@@ -16,7 +16,7 @@ function Products() {
       <h1 className="scroll-m-10 text-primary text-2xl font-bold tracking-tight">
         Daftar Produk
       </h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mt-4">
         <CardProduct onAddToCart={() => setDialogDisplay(true)} />
         <CardProduct onAddToCart={() => setDialogDisplay(true)} />
         <CardProduct onAddToCart={() => setDialogDisplay(true)} />

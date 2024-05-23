@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -17,13 +18,14 @@ type PropTypes = {
 function AddToCartDialog({ open, setOpen }: PropTypes) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-w-md md:max-w-3xl grid-cols-12 gap-3 sm:gap-6 p-10">
+      <DialogContent className="max-w-md md:max-w-3xl grid-cols-12 gap-3 sm:gap-6 p-10 rounded-lg">
         <div className="relative col-span-12 md:col-span-5 w-full max-w-[200px] md:max-w-none mx-auto aspect-square rounded-lg bg-muted overflow-hidden">
           <img
             src="https://source.unsplash.com/random/400x300"
             alt="product-1"
             className="absolute w-full h-full object-cover"
           />
+          <Badge className="absolute top-2 left-2">Stock: 999</Badge>
         </div>
         <div className="col-span-12 md:col-span-7 space-y-2 sm:space-y-4">
           <DialogHeader>
