@@ -20,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={outfit.className}>
         <Navbar />
-        {children}
+        <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-10 mt-10">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
