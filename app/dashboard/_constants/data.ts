@@ -1,4 +1,4 @@
-import { BarChart, Package, PackageOpen, Percent, User } from "lucide-react";
+import { BarChart, Package, PackageOpen, Percent, Store, User } from "lucide-react";
 
 export const sidebarNavigations = [
   {
@@ -30,5 +30,12 @@ export const sidebarNavigations = [
     path: '/dashboard/create-product',
     label: 'Unggah Produk',
     Icon: PackageOpen
+  },
+  {
+    id: 'sidebar-6',
+    path: '/',
+    label: 'Pergi Ke Toko',
+    Icon: Store,
+    isTargetBlank: true
   },
 ]

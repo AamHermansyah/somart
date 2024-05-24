@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
-import { SquareChevronRight } from "lucide-react"
+import { ExternalLink, SquareChevronRight } from "lucide-react"
 
 function Sidebar() {
   const pathname = usePathname();
@@ -54,13 +54,21 @@ function Sidebar() {
       <div className="relative">
         <nav className="px-4">
           {sidebarNavigations.map((item) => (
-            <Link href={item.path} key={item.id} className="relative block px-4 py-3">
+            <Link
+              key={item.id}
+              href={item.path}
+              target={item.isTargetBlank ? '_blank' : '_self'}
+              className="relative block px-4 py-3"
+            >
               <button className={cn(
                 'w-full flex items-center gap-4 font-semibold tracking-wide',
                 pathname === item.path ? 'text-primary' : 'text-muted-foreground'
               )}>
                 <item.Icon className="w-4 h-4" /> {item.label}
               </button>
+              {item.isTargetBlank && (
+                <ExternalLink className="absolute top-[48%] -translate-y-[50%] right-0 w-4 h-4" />
+              )}
               {(pathname === item.path) && (
                 <Separator
                   orientation="vertical"
