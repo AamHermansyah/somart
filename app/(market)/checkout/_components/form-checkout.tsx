@@ -8,7 +8,7 @@ function FormCheckout() {
     <div className="grid col-span-1 sm:grid-cols-2 gap-4">
       <div className="w-full flex flex-col space-y-1.5">
         <Label htmlFor="name">Nama Lengkap</Label>
-        <Input id="name" type="text" placeholder="Masukan Nama Lengkap" />
+        <Input id="name" type="text" placeholder="Masukan nama lengkap" />
       </div>
       <div className="w-full flex flex-col space-y-1.5">
         <Label htmlFor="email">Email</Label>
@@ -16,15 +16,15 @@ function FormCheckout() {
       </div>
       <div className="w-full flex flex-col space-y-1.5">
         <Label htmlFor="phone">Nomor Telepon</Label>
-        <Input id="phone" type="text" placeholder="Masukan Nomor Telepon" />
+        <Input id="phone" type="text" placeholder="Masukan nomor telepon" />
       </div>
       <div className="w-full flex flex-col space-y-1.5">
         <Label htmlFor="zip">Kode Zip</Label>
-        <Input id="zip" type="text" placeholder="Masukan Kode Zip" />
+        <Input id="zip" type="text" placeholder="Masukan kode zip" />
       </div>
       <div className="sm:col-span-2 w-full flex flex-col space-y-1.5">
         <Label htmlFor="address">Alamat</Label>
-        <Input id="address" type="text" placeholder="Masukan Alamat" />
+        <Input id="address" type="text" placeholder="Masukan alamat" />
       </div>
       <div className="sm:col-span-2">
         <Button className="w-full">Checkout</Button>
