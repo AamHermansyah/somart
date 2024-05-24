@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import type { Metadata } from "next"
+import { Outfit } from "next/font/google"
+import "./globals.css"
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -19,11 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <Navbar />
-        <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-10 mt-10">
-          {children}
-        </div>
-        <Footer />
+        {children}
       </body>
     </html>
   );

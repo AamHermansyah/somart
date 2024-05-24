@@ -1,5 +1,6 @@
 import {
   CircleUserRound,
+  LayoutDashboard,
   LogOut,
   ShoppingCart,
 } from "lucide-react"
@@ -23,6 +24,12 @@ export function MenuProfile() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
+        <Link href="/dashboard">
+          <DropdownMenuItem>
+            <LayoutDashboard className="mr-2 h-4 w-4" />
+            <span>Dashboard</span>
+          </DropdownMenuItem>
+        </Link>
         <Link href="/order-list">
           <DropdownMenuItem>
             <ShoppingCart className="mr-2 h-4 w-4" />

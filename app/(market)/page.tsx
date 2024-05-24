@@ -1,6 +1,6 @@
 import { Carousel } from "./_components/carousel"
-import Hero from "./_components/hero";
-import Products from "./_components/products";
+import Hero from "./_components/hero"
+import Products from "./_components/products"
 
 export default function Home() {
   return (
