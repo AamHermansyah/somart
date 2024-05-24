@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { BiSolidShoppingBag } from "react-icons/bi";
+import { ShoppingCart } from "lucide-react"
 
 type PropTypes = {
   open: boolean;
@@ -52,7 +52,7 @@ function AddToCartDialog({ open, setOpen }: PropTypes) {
           </div>
           <div className="grid space-y-2 pt-2 sm:pt-0">
             <Button className="w-full md:w-max gap-2" type="submit">
-              <BiSolidShoppingBag />
+              <ShoppingCart className="h-4 w-4" />
               Add To Cart
             </Button>
             <span className="text-sm text-center md:text-left"><b>Kategori:</b> Kebutuhan Rumah Tangga</span>

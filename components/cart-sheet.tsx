@@ -6,19 +6,20 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { BiSolidShoppingBag } from "react-icons/bi"
 import CartItem from "./cart-item"
 import { Badge } from "./ui/badge"
+import { ShoppingBasket } from "lucide-react"
+import Link from "next/link"
 
 export function CartSheet() {
   return (
     <Sheet>
       <SheetTrigger asChild>
         <div className="relative cursor-pointer">
-          <Button variant="ghost" className="text-2xl p-3 rounded-full h-auto">
-            <BiSolidShoppingBag />
+          <Button variant="ghost" className="text-2xl p-2 rounded-full h-auto">
+            <ShoppingBasket />
           </Button>
-          <Badge className="absolute top-0 right-0 w-[20px] text-[10px] bg-destructive hover:bg-destructive aspect-square flex justify-center items-center">
+          <Badge className="absolute -top-1 -right-1 w-[20px] text-[10px] bg-destructive hover:bg-destructive aspect-square flex justify-center items-center">
             2
           </Badge>
         </div>
@@ -42,7 +43,9 @@ export function CartSheet() {
             <h2>Subtotal:</h2>
             <span>Rp 12.000</span>
           </div>
-          <Button className="w-full">Checkout</Button>
+          <Link href="/checkout">
+            <Button className="w-full">Checkout</Button>
+          </Link>
         </div>
       </SheetContent>
     </Sheet>

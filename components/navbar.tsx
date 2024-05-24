@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { Button } from './ui/button'
 import { CartSheet } from './cart-sheet'
+import { MenuProfile } from './menu-profile'
 
 function Navbar() {
   return (
@@ -17,6 +18,7 @@ function Navbar() {
               Login
             </Button>
           </Link>
+          <MenuProfile />
         </div>
       </div>
     </header>

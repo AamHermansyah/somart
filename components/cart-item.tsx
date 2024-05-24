@@ -1,5 +1,4 @@
-import React from 'react'
-import { MdDeleteOutline } from 'react-icons/md'
+import { Trash } from 'lucide-react'
 
 function CartItem() {
   return (
@@ -16,8 +15,8 @@ function CartItem() {
         <p className="text-xs sm:text-sm">Jumlah: 2</p>
         <div className="w-full flex justify-between items-center gap-2">
           <span className="font-semibold text-base sm:text-lg">Rp 12.000</span>
-          <button className="text-lg text-destructive">
-            <MdDeleteOutline />
+          <button className="text-destructive">
+            <Trash className="h-4 w-4" />
           </button>
         </div>
       </div>
