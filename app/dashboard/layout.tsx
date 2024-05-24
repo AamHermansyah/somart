@@ -12,7 +12,7 @@ function DashboardLayout({
       <div className="w-full lg:flex">
         <div className="hidden lg:block basis-[250px] h-screen"></div>
         <div className="lg:flex-auto min-h-screen bg-secondary p-4 transition-all">
-          <div className="max-w-7xl mx-auto space-y-10">
+          <div className="max-w-7xl mx-auto space-y-5">
             <ProfileBadge />
             {children}
           </div>

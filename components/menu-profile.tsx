@@ -14,8 +14,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
+import useUserStore from "@/stores/user"
+import { toast } from "sonner"
 
 export function MenuProfile() {
+  const { removeUserAndToken, user } = useUserStore();
+
+  const handleLogout = () => {
+    removeUserAndToken();
+    toast.warning('Berhasil logout!');
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -24,12 +33,14 @@ export function MenuProfile() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <Link href="/dashboard">
-          <DropdownMenuItem>
-            <LayoutDashboard className="mr-2 h-4 w-4" />
-            <span>Dashboard</span>
-          </DropdownMenuItem>
-        </Link>
+        {user!.role === 'ADMIN' && (
+          <Link href="/dashboard">
+            <DropdownMenuItem>
+              <LayoutDashboard className="mr-2 h-4 w-4" />
+              <span>Dashboard</span>
+            </DropdownMenuItem>
+          </Link>
+        )}
         <Link href="/order-list">
           <DropdownMenuItem>
             <ShoppingCart className="mr-2 h-4 w-4" />
@@ -37,7 +48,7 @@ export function MenuProfile() {
           </DropdownMenuItem>
         </Link>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogout}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>

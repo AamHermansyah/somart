@@ -1,10 +1,15 @@
+'use client'
+
 import Link from 'next/link'
 import React from 'react'
 import { Button } from './ui/button'
 import { CartSheet } from './cart-sheet'
 import { MenuProfile } from './menu-profile'
+import useUserStore from '@/stores/user'
 
 function Navbar() {
+  const { user } = useUserStore();
+
   return (
     <header className="w-full border-b bg-background">
       <div className="max-w-[1500px] mx-auto px-4 sm:px-10 py-2 flex justify-between items-center">
@@ -12,13 +17,18 @@ function Navbar() {
           SoMart
         </Link>
         <div className="flex-auto flex justify-end items-center gap-4">
-          <CartSheet />
-          <Link href="/auth/login">
-            <Button>
-              Login
-            </Button>
-          </Link>
-          <MenuProfile />
+          {!!user ? (
+            <>
+              <CartSheet />
+              <MenuProfile />
+            </>
+          ) : (
+            <Link href="/auth/login">
+              <Button>
+                Login
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </header>

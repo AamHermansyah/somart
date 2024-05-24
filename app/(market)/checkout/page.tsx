@@ -1,8 +1,19 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect } from 'react'
 import FormCheckout from './_components/form-checkout'
 import CheckoutInformation from './_components/checkout-information'
+import useUserStore from '@/stores/user'
+import { useRouter } from 'next/navigation'
 
 function CheckoutPage() {
+  const { user } = useUserStore();
+  const navigate = useRouter();
+
+  useEffect(() => {
+    if (!user) navigate.push('/auth/login');
+  }, [user]);
+
   return (
     <div>
       <div className="bg-primary p-2 text-center">

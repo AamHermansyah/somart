@@ -3,15 +3,26 @@
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
 import { sidebarNavigations } from "../_constants/data"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import { ExternalLink, SquareChevronRight } from "lucide-react"
+import useUserStore from "@/stores/user"
+import { toast } from "sonner"
 
 function Sidebar() {
   const pathname = usePathname();
   const [display, setDisplay] = useState(false);
+  const { user } = useUserStore();
+  const navigate = useRouter();
+  const { removeUserAndToken } = useUserStore();
+
+  const handleLogout = () => {
+    removeUserAndToken();
+    navigate.push('/');
+    toast.warning('Berhasil logout!');
+  }
 
   useEffect(() => {
     if (display) {
@@ -32,6 +43,9 @@ function Sidebar() {
     }
   }, [display]);
 
+  useEffect(() => {
+    if (!user || (user.role === 'USER')) navigate.push('/');
+  }, [user]);
 
   return (
     <aside id="sidebar" className={cn(
@@ -84,6 +98,7 @@ function Sidebar() {
           size="sm"
           variant="destructive"
           className="w-full py-2 h-auto"
+          onClick={handleLogout}
         >
           Logout
         </Button>
