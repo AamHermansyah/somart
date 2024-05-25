@@ -8,6 +8,7 @@ import { Product } from '@prisma/client'
 import { getAllProducts } from '@/data/product'
 import { toast } from 'sonner'
 import { Frown } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 
 type PropTypes = {
   hiddenAddToCart?: boolean;
@@ -18,16 +19,22 @@ function Products({ hiddenAddToCart }: PropTypes) {
   const [products, setProducts] = useState<Product[] | null>(null);
   const [isLoading, startFetching] = useTransition();
   const [productDialog, setProductDialog] = useState<Product | null>(null);
+  const urlParams = useSearchParams();
+  const refreshToken = urlParams.get('refreshToken');
 
-  useEffect(() => {
+  const fetchProduct = () => {
     startFetching(async () => {
       await getAllProducts()
         .then((data) => {
           if (data) setProducts(data);
         })
         .catch(() => toast.error('Gagal mengambil produk!'));
-    })
-  }, []);
+    });
+  }
+
+  useEffect(() => {
+    fetchProduct();
+  }, [refreshToken]);
 
   return (
     <main id="product-list" className="pb-4">
@@ -35,7 +42,13 @@ function Products({ hiddenAddToCart }: PropTypes) {
         data={productDialog}
         open={dialogDisplay}
         setOpen={setDialogDisplay}
-        onCloseDialog={() => setProductDialog(null)}
+        onCloseDialog={(isAddToCartSuccess) => {
+          setProductDialog(null);
+          if (isAddToCartSuccess) {
+            setProducts(null);
+            fetchProduct();
+          }
+        }}
       />
       <h1 className="scroll-m-10 text-primary text-2xl font-bold tracking-tight">
         Daftar Produk

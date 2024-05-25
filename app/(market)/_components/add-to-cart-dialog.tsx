@@ -1,3 +1,4 @@
+import { addProductToCheckout } from "@/actions/checkout"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -8,19 +9,23 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { formatRupiah } from "@/lib/utils"
+import useUserStore from "@/stores/user"
 import { Product } from "@prisma/client"
-import { ShoppingCart } from "lucide-react"
-import { useState } from "react"
+import { LoaderCircle, ShoppingCart } from "lucide-react"
+import { useState, useTransition } from "react"
+import { toast } from "sonner"
 
 type PropTypes = {
   open: boolean;
   setOpen: (open: boolean) => void;
   data: Product | null;
-  onCloseDialog?: () => void;
+  onCloseDialog?: (isAddToCartSuccess?: boolean) => void;
 }
 
 function AddToCartDialog({ open, setOpen, data, onCloseDialog }: PropTypes) {
+  const [isLoading, startFetching] = useTransition();
   const [amount, setAmount] = useState(1);
+  const { user } = useUserStore();
 
   const handleDecrement = () => {
     setAmount((prev) => {
@@ -34,6 +39,27 @@ function AddToCartDialog({ open, setOpen, data, onCloseDialog }: PropTypes) {
       setAmount((prev) => {
         if (prev < data.stock) return prev + 1;
         return prev;
+      })
+    }
+  }
+
+  const handleAddToChart = () => {
+    if (data && user) {
+      startFetching(async () => {
+        await addProductToCheckout({
+          idProduct: data.id,
+          amount,
+          idUser: user.id,
+          totalPrice: amount * data.price
+        })
+          .then((data) => {
+            if (data.success) {
+              toast.success(data.success);
+              setAmount(1);
+              if (onCloseDialog) onCloseDialog(true);
+            } else toast.error(data.error);
+          })
+          .catch(() => toast.error('Gagal mengambil produk!'));
       })
     }
   }
@@ -79,9 +105,18 @@ function AddToCartDialog({ open, setOpen, data, onCloseDialog }: PropTypes) {
               </div>
             </div>
             <div className="grid space-y-2 pt-2 sm:pt-0">
-              <Button className="w-full md:w-max gap-2" type="submit">
-                <ShoppingCart className="h-4 w-4" />
-                Add To Cart
+              <Button className="w-full md:w-max gap-2" disabled={isLoading} onClick={handleAddToChart}>
+                {isLoading ? (
+                  <>
+                    <LoaderCircle className="h-4 w-4 animate-spin" />
+                    Add To Cart
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart className="h-4 w-4" />
+                    Add To Cart
+                  </>
+                )}
               </Button>
               <span className="text-sm text-center md:text-left"><b>Kategori:</b> {data.category}</span>
             </div>

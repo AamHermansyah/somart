@@ -57,3 +57,17 @@ export const productSchemaRaw = {
 }
 
 export const productSchema = z.object(productSchemaRaw);
+
+export const orderSchema = z.object({
+  name: z.string().min(1, { message: "Nama wajib diisi" }),
+  phone: z.string()
+    .min(10, {
+      message: "Nomor telepon harus terdiri dari minimal 10 karakter"
+    })
+    .regex(/^\+?[0-9]\d{1,14}$/, {
+      message: "Nomor telepon tidak valid"
+    }),
+  email: z.string().email({ message: "Alamat email tidak valid" }),
+  codeZip: z.string().min(5, { message: "Kode pos harus terdiri dari minimal 5 karakter" }),
+  address: z.string().min(1, { message: "Alamat wajib diisi" }),
+});

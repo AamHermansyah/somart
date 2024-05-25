@@ -6,9 +6,11 @@ import { Button } from './ui/button'
 import { CartSheet } from './cart-sheet'
 import { MenuProfile } from './menu-profile'
 import useUserStore from '@/stores/user'
+import { usePathname } from 'next/navigation'
 
 function Navbar() {
   const { user } = useUserStore();
+  const pathname = usePathname();
 
   return (
     <header className="w-full border-b bg-background">
@@ -19,7 +21,9 @@ function Navbar() {
         <div className="flex-auto flex justify-end items-center gap-4">
           {!!user ? (
             <>
-              <CartSheet />
+              {pathname !== '/checkout' && (
+                <CartSheet />
+              )}
               <MenuProfile />
             </>
           ) : (

@@ -1,4 +1,4 @@
-import { BarChart, Package, PackageOpen, Percent, Store, User } from "lucide-react";
+import { BarChart, HandCoins, Package, PackageOpen, Percent, Store, User, UserCircle } from "lucide-react";
 
 export const sidebarNavigations = [
   {
@@ -38,4 +38,32 @@ export const sidebarNavigations = [
     Icon: Store,
     isTargetBlank: true
   },
-]
+];
+
+export const dataOverview = [
+  {
+    Icon: Package,
+    title: 'Total Produk',
+    value: '21 Item',
+  },
+  {
+    Icon: PackageOpen,
+    title: 'Total Orderan',
+    value: '52 Order',
+  },
+  {
+    Icon: PackageOpen,
+    title: 'Total Produk Terjual',
+    value: '104 Item',
+  },
+  {
+    Icon: HandCoins,
+    title: 'Penghasilan',
+    value: 'Rp 12.000.000',
+  },
+  {
+    Icon: UserCircle,
+    title: 'Total Pengguna',
+    value: '1000 User',
+  },
+];

@@ -30,8 +30,6 @@ export const createProduct = async (values: ProductInput) => {
     title
   } = validatedFields.data;
 
-  console.log(quantity)
-
   try {
     await db.product.create({
       data: {
