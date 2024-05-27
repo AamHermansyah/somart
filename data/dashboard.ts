@@ -16,6 +16,16 @@ export const getOverviewDashboard = async () => {
           totalProducts
         }
       }
+    } else {
+      return {
+        data: {
+          totalProductsSold: 0,
+          totalIncome: 0,
+          totalOrders,
+          totalUsers,
+          totalProducts
+        }
+      }
     }
   } catch (error) {
     return null;

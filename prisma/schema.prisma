@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -21,7 +21,7 @@ model Product {
   quantity    String
   stock       Int
   category    String
-  image       String     @db.Text
+  image       String     @db.LongText
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   Checkout    Checkout[]
@@ -33,17 +33,18 @@ enum Role {
 }
 
 model User {
-  id             Int        @id @default(autoincrement())
+  id             Int            @id @default(autoincrement())
   name           String
-  email          String     @unique
+  email          String         @unique
   password       String
   purchaseAmount Int
   totalPrice     Float
-  role           Role       @default(USER)
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
+  role           Role           @default(USER)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
   Checkout       Checkout[]
   Order          Order[]
+  MonthlyStock   MonthlyStock[]
 }
 
 model Checkout {
@@ -71,6 +72,15 @@ model Order {
   status        String
   createdAt     DateTime @default(now())
   User          User     @relation(fields: [idUser], references: [id])
+}
+
+model MonthlyStock {
+  id        Int      @id @default(autoincrement())
+  idUser    Int
+  label     String
+  value     Int
+  createdAt DateTime @default(now())
+  User      User     @relation(fields: [idUser], references: [id])
 }
 
 model Dashboard {
